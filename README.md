@@ -5,6 +5,8 @@ Demo to show Infrastructure as Code, Pipeline as Code
 Setup 1 VPC with 2 public Subnets, with Internet Gateway, Route Table, Security Group
 
 Setup Application Load Balancer, AutoScaling Group, 2 ubuntu instances in 2 Available Zones, with static website deployed
+```
+Folders:
 
 network/
 compute/
@@ -15,7 +17,10 @@ providers.tf
 backend.tf
 
 Jenkinsfile
-```
+
+=========================
+Commands: 
+
 terraform fmt
 terraform plan
 terraform apply -auto-approve
@@ -25,11 +30,13 @@ terraform destroy
 ## local-jenkins folder
 Setup jenkins at local
 
+
+```
 local-jenkins/
     Dockerfile
     main.tf
 
-```
+========================
 cd local-jenkins
 docker build -t jenkins:terraform .
 docker image ls
@@ -88,5 +95,7 @@ Example of static website. Only one page to show hostname
 
 Created branch static with index.html to similate a separate static website
 
+```
 static/
     index.html
+```
