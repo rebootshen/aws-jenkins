@@ -29,9 +29,11 @@ pipeline {
         //         }
         //     }
         stage ('Terraform version') { 
-                steps {
+            steps {
                 sh '''
                     terraform --version
+                    terraform init -input=false
+                    terraform workspace select ${environment} || terraform workspace new ${environment}
                 ''' 
                 }
         }
@@ -44,13 +46,11 @@ pipeline {
             }
             
             steps {
-                sh 'terraform init -input=false'
-                sh 'terraform workspace select ${environment} || terraform workspace new ${environment}'
-
                 sh "terraform plan -input=false -out tfplan "
                 sh 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
+
         stage('Approval') {
            when {
                not {
@@ -61,9 +61,6 @@ pipeline {
                 }
            }
            
-                
-            
-
            steps {
                script {
                     def plan = readFile 'tfplan.txt'
@@ -90,11 +87,9 @@ pipeline {
                 equals expected: true, actual: params.destroy
             }
         
-        steps {
-           sh 'terraform init -input=false'
-           sh 'terraform workspace select ${environment}'
-           sh "terraform destroy --auto-approve"
-        }
+            steps {
+                sh "terraform destroy --auto-approve"
+            }
     }
 
   }
