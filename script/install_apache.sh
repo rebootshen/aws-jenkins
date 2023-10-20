@@ -10,9 +10,9 @@ sudo systemctl status apache2
 
 
 sudo rm -rf /var/www/html
-sudo git clone https://github.com/rebootshen/aws-jenkins.git /var/www/html/
+sudo git clone -b static https://github.com/rebootshen/aws-jenkins.git /var/www/html/
 cd /var/www/html/
-sudo git checkout static
+#sudo git checkout static
 
 hh=$(hostname -f)
 sudo sed -i "s/HOSTNAME/$hh/g" /var/www/html/index.html 

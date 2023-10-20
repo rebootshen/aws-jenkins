@@ -18,16 +18,16 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_key_pair" "ssh_key" {
-  key_name   = "ssh_key"
-  public_key = file("ssh_keys/my_aws.pub")
-}
+# resource "aws_key_pair" "ssh_key" {
+#   key_name   = "ssh_key"
+#   public_key = file("ssh_keys/my_aws.pub")
+# }
 
 resource "aws_launch_template" "web" {
   name_prefix            = "web"
   image_id               = data.aws_ami.ubuntu.id
   instance_type          = var.web_instance_type
-  key_name               = aws_key_pair.ssh_key.key_name
+  #key_name               = aws_key_pair.ssh_key.key_name
   vpc_security_group_ids = [var.web_sg]
   user_data              = filebase64("script/install_apache.sh")
 

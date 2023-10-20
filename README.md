@@ -31,6 +31,7 @@ http://localhost:8080/login?from=%2F
 Install plugins:
 Terraform
 AWS Credentials
+ansiColor
 Locale
     systemLocale: en
     ignoreAcceptLanguage: true
