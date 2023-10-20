@@ -11,7 +11,7 @@ sudo systemctl status apache2
 
 sudo rm -rf /var/www/html
 sudo git clone -b static https://github.com/rebootshen/aws-jenkins.git /var/www/html/
-cd /var/www/html/
+#cd /var/www/html/
 #sudo git checkout static
 
 hh=$(hostname -f)
