@@ -28,8 +28,9 @@ pipeline {
         //             }
         //         }
         //     }
-        stage ('Terraform version') { 
+        stage ('Terraform Init') { 
             steps {
+                println(WORKSPACE)
                 sh '''
                     terraform --version
                     terraform init -input=false

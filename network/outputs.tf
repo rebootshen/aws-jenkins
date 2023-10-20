@@ -16,3 +16,7 @@ output "test_tg" {
   value = aws_lb_target_group.test_alb.arn
 }
 
+output "test_alb_dns" {
+  value = aws_lb.test_alb.dns_name
+}
+
