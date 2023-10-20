@@ -1,9 +1,20 @@
 # aws-jenkins
 
-## main branch
+Demo to show Infrastructure as Code, Pipeline as Code
+## main branch: 
+Setup 1 VPC with 2 public Subnets, with Internet Gateway, Route Table, Security Group
 
-Setup Application Load Balancer, ASG, 2 instance, with static website deployed
+Setup Application Load Balancer, AutoScaling Group, 2 ubuntu instances in 2 Available Zones, with static website deployed
 
+network/
+compute/
+script/
+main.tf
+outputs.tf
+providers.tf
+backend.tf
+
+Jenkinsfile
 ```
 terraform fmt
 terraform plan
@@ -11,8 +22,12 @@ terraform apply -auto-approve
 terraform destroy
 ```
 
-## jenkins branch
+## local-jenkins folder
 Setup jenkins at local
+
+local-jenkins/
+    Dockerfile
+    main.tf
 
 ```
 cd local-jenkins
@@ -70,3 +85,8 @@ docker exec -it jenkins bash
 ## static branch
 
 Example of static website. Only one page to show hostname
+
+Created branch static with index.html to similate a separate static website
+
+static/
+    index.html
