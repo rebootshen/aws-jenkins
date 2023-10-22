@@ -125,7 +125,8 @@ pipeline {
                  script{
                         dir("terraform")
                         {
-                            git branch: 'main', credentialsId: 'credentials', url: "https://github.com/rebootshen/aws-jenkins.git"
+                            echo "git branch: 'main', credentialsId: 'credentials', url: 'https://github.com/rebootshen/aws-jenkins.git'"
+                            sh 'git clone -b main https://github.com/rebootshen/aws-jenkins.git'
                         }
                     }
                 }
