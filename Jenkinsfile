@@ -154,28 +154,15 @@ pipeline {
                 sh '''
                     cd terraform/
                     terraform plan -input=false -out tfplan
-                    terraform show -no-color tfplan > tfplan.txt
+                    #terraform show -no-color tfplan > tfplan.txt
                 '''
             }
         }
 
 
         stage('Approval') {
-           when {
-               not {
-                   equals expected: true, actual: true
-               }
-               not {
-                    equals expected: true, actual: params.destroy
-                }
-           }
-           
            steps {
-               script {
-                    def plan = readFile 'tfplan.txt'
-                    input message: "Do you want to apply the plan?",
-                    parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
-               }
+               echo 'Approve the plan'
            }
        }
 
