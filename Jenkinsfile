@@ -20,9 +20,10 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                 script{
+                script{
                         dir("terraform")
                         {
+                            cleanWs()
                             git branch: 'main', url: 'https://github.com/rebootshen/aws-jenkins.git'
                         }
                     }
@@ -51,7 +52,7 @@ pipeline {
                 sh '''
                     cd terraform
                     pwd; terraform plan -input=false -out tfplan
-                    pwd; terraform show -no-color tfplan > terraform/tfplan.txt
+                    pwd; terraform show -no-color tfplan > tfplan.txt
                 '''
             }
         }
