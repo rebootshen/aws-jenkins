@@ -23,7 +23,7 @@ pipeline {
                  script{
                         dir("terraform")
                         {
-                            git "https://github.com/rebootshen/aws-jenkins.git"
+                            git branch: 'main', url: 'https://github.com/rebootshen/aws-jenkins.git'
                         }
                     }
                 }
