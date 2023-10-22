@@ -51,7 +51,7 @@ pipeline {
                 sh '''
                     cd terraform
                     pwd; terraform plan -input=false -out tfplan
-                    pwd; cd terraform; terraform show -no-color tfplan > tfplan.txt
+                    pwd; terraform show -no-color tfplan > terraform/tfplan.txt
                 '''
             }
         }
