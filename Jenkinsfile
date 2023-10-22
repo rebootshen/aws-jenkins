@@ -122,15 +122,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                 script{
-                        dir("terraform")
-                        {
-                            echo "git branch: 'main', credentialsId: 'credentials', url: 'https://github.com/rebootshen/aws-jenkins.git'"
-                            sh 'git clone -b main https://github.com/rebootshen/aws-jenkins.git'
-                        }
-                    }
-                }
+                sh 'pwd'
+                sh 'mkdir terraform'
+                echo "git branch: 'main', credentialsId: 'credentials', url: 'https://github.com/rebootshen/aws-jenkins.git'"
+                sh 'git clone -b main https://github.com/rebootshen/aws-jenkins.git terraform/'
             }
+
+        }
         stage ('Terraform Init') { 
             steps {
                 println(WORKSPACE)
