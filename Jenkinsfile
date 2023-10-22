@@ -125,7 +125,7 @@ pipeline {
                  script{
                         dir("terraform")
                         {
-                            sh "git clone -b main https://github.com/rebootshen/aws-jenkins.git"
+                            git branch: 'main', credentialsId: 'credentials', url: "https://github.com/rebootshen/aws-jenkins.git"
                         }
                     }
                 }
@@ -135,6 +135,7 @@ pipeline {
                 println(WORKSPACE)
                 sh '''
                     cd terraform/
+                    pwd
                     terraform --version
                     terraform init -input=false
                     terraform workspace select ${environment} || terraform workspace new ${environment}
