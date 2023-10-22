@@ -120,7 +120,7 @@ pipeline {
     options { ansiColor('xterm') } 
 
     stages {
-        stage('Checkout') {
+        stage('Checkout1') {
             steps {
                 sh 'pwd'
                 sh 'mkdir terraform'
