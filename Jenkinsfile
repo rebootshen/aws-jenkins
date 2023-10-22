@@ -33,9 +33,9 @@ pipeline {
                 println(WORKSPACE)
                 sh '''
                     cd terraform
-                    terraform --version
-                    terraform init -input=false
-                    terraform workspace select ${environment} || terraform workspace new ${environment}
+                    pwd; terraform --version
+                    pwd; terraform init -input=false
+                    pwd; terraform workspace select ${environment} || terraform workspace new ${environment}
                 ''' 
                 }
         }
@@ -50,8 +50,8 @@ pipeline {
             steps {
                 sh '''
                     cd terraform
-                    terraform plan -input=false -out tfplan
-                    terraform show -no-color tfplan > tfplan.txt
+                    pwd; terraform plan -input=false -out tfplan
+                    pwd; cd terraform; terraform show -no-color tfplan > tfplan.txt
                 '''
             }
         }
