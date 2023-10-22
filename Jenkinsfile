@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'environment', defaultValue: 'terraform', description: 'Workspace/environment file to use for deployment')
-        booleanParam(name: 'autoApprove', defaultValue: true, description: 'Automatically run apply after generating plan?')
+        booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
         booleanParam(name: 'destroy', defaultValue: false, description: 'Destroy Terraform build?')
 
     }
@@ -163,7 +163,7 @@ pipeline {
         stage('Approval') {
            when {
                not {
-                   equals expected: true, actual: params.autoApprove
+                   equals expected: true, actual: true
                }
                not {
                     equals expected: true, actual: params.destroy
@@ -179,23 +179,13 @@ pipeline {
            }
        }
 
-        stage('Apply') {
-            when {
-                not {
-                    equals expected: true, actual: params.destroy
-                }
-            }
-            
+        stage('Apply') {            
             steps {
                 echo 'Deploy the application'
             }
         }
         
         stage('Destroy') {
-            when {
-                equals expected: true, actual: params.destroy
-            }
-        
             steps {
                 echo 'Destroy the application'
             }
